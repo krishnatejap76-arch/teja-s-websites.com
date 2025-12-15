@@ -3,30 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Protected PDF Access</title>
+    <title>Paid PDF Access - ₹49</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 50%, #48dbfb 100%);
             min-height: 100vh;
         }
-        .login-page {
+        .payment-page {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             text-align: center;
         }
-        .login-container {
-            background: rgba(255,255,255,0.15);
+        .payment-container {
+            background: rgba(255,255,255,0.95);
             padding: 40px;
-            border-radius: 20px;
-            backdrop-filter: blur(15px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-            max-width: 400px;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            max-width: 450px;
             width: 90%;
+            border: 3px solid #ff6b6b;
         }
         .pdf-page {
             display: none;
@@ -34,80 +34,138 @@
             max-width: 1200px;
             margin: 0 auto;
         }
-        h1 { color: white; margin-bottom: 10px; }
-        h2 { color: #333; margin-bottom: 20px; }
-        input[type="password"] {
-            width: 100%;
-            padding: 15px;
+        .price-tag {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 24px;
+            font-weight: bold;
             margin: 20px 0;
-            border: none;
-            border-radius: 30px;
-            font-size: 16px;
-            text-align: center;
-            background: rgba(255,255,255,0.9);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: inline-block;
+            box-shadow: 0 10px 30px rgba(255,107,107,0.4);
+        }
+        h1 { color: #333; margin-bottom: 10px; }
+        h2 { color: #333; margin-bottom: 20px; }
+        .upi-id {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px dashed #ff6b6b;
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            letter-spacing: 2px;
+            margin: 20px 0;
+            word-break: break-all;
+        }
+        .qr-placeholder {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            border-radius: 15px;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: white;
+            border: 4px dashed rgba(255,255,255,0.5);
         }
         .btn {
-            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            background: linear-gradient(45deg, #4CAF50, #8BC34A);
             color: white;
             border: none;
             padding: 15px 40px;
             border-radius: 30px;
             font-size: 16px;
+            font-weight: bold;
             cursor: pointer;
             transition: all 0.3s;
-            margin: 10px;
-            box-shadow: 0 5px 15px rgba(255,107,107,0.4);
-        }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(255,107,107,0.6); }
-        .btn-success {
-            background: linear-gradient(45deg, #4CAF50, #8BC34A);
+            margin: 15px;
             box-shadow: 0 5px 15px rgba(76,175,80,0.4);
+            text-decoration: none;
+            display: inline-block;
         }
-        .btn-success:hover { box-shadow: 0 8px 25px rgba(76,175,80,0.6); }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(76,175,80,0.6); }
+        .btn-danger {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+        }
         .pdf-container {
             background: white;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
             margin-bottom: 20px;
+            border-top: 5px solid #4CAF50;
         }
         .pdf-viewer {
             width: 100%;
             height: 70vh;
             border: none;
-            border-radius: 10px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         .controls {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 15px;
             justify-content: center;
-            margin-top: 20px;
+            margin-top: 25px;
+        }
+        .success-badge {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            margin: 15px 0;
         }
         @media (max-width: 768px) {
             .controls { flex-direction: column; align-items: center; }
-            .btn { width: 100%; max-width: 300px; }
+            .btn, .upi-id { width: 100%; max-width: 350px; box-sizing: border-box; }
+            .payment-container { padding: 30px 20px; }
         }
     </style>
 </head>
 <body>
-    <!-- Login Page -->
-    <div id="loginPage" class="login-page">
-        <div class="login-container">
-            <h1>🔒 Protected Document</h1>
-            <p style="color: rgba(255,255,255,0.9);">Enter access key to proceed</p>
-            <input type="password" id="keyInput" placeholder="Enter key code..." maxlength="20">
-            <br>
-            <button class="btn" onclick="checkKey()">Unlock Document</button>
+    <!-- Payment Page -->
+    <div id="paymentPage" class="payment-page">
+        <div class="payment-container">
+            <h1>📄 Premium PDF Access</h1>
+            <div class="price-tag">ONLY ₹49</div>
+            <p style="color: #666; font-size: 18px;">Complete payment to unlock document</p>
+            
+            <div class="upi-id">9959172924@fam</div>
+            
+            <div class="qr-placeholder">
+                📱 UPI QR Code<br>
+                (Scan & Pay ₹49)
+            </div>
+            
+            <p style="color: #666;">
+                <strong>Instructions:</strong><br>
+                1. Pay exactly <strong>₹49</strong> to UPI ID above<br>
+                2. Enter <strong>Transaction ID/Ref#</strong> below<br>
+                3. Click Verify to access PDF
+            </p>
+            
+            <input type="text" id="transactionId" placeholder="Enter Transaction ID / UPI Reference #" 
+                   style="width: 100%; padding: 15px; margin: 20px 0; border: 2px solid #ddd; border-radius: 25px; font-size: 16px; text-align: center;">
+            
+            <button class="btn" onclick="verifyPayment()">✅ Verify Payment & Unlock</button>
+            
+            <p style="font-size: 12px; color: #999; margin-top: 20px;">
+                💳 Supports: PhonePe, Google Pay, Paytm, BHIM
+            </p>
         </div>
     </div>
 
-    <!-- PDF Page -->
+    <!-- PDF Access Page -->
     <div id="pdfPage" class="pdf-page">
         <div class="pdf-container">
-            <h2>✅ Access Granted</h2>
-            <p>Document details and controls available below:</p>
+            <div class="success-badge">✅ Payment Verified - Access Granted</div>
+            <h2>📖 Your PDF Document</h2>
             
             <iframe id="pdfViewer" class="pdf-viewer" 
                     src="https://drive.google.com/file/d/1LdV4hQF9rmKq3eC8uM-tLfwxO3Rx3k4t/preview" 
@@ -115,64 +173,9 @@
             
             <div class="controls">
                 <a href="https://drive.google.com/uc?export=download&id=1LdV4hQF9rmKq3eC8uM-tLfwxO3Rx3k4t" 
-                   class="btn btn-success" target="_blank">💾 Save PDF</a>
+                   class="btn" target="_blank">💾 Download PDF</a>
                 <button class="btn" onclick="printPDF()">🖨️ Print</button>
                 <button class="btn" onclick="toggleFullscreen()">📱 Fullscreen</button>
-                <button class="btn" onclick="goBack()">🔙 Back to Lock</button>
             </div>
         </div>
-    </div>
-
-    <script>
-        const correctKey = "vamsi jacks";
-        
-        function checkKey() {
-            const input = document.getElementById('keyInput').value.trim();
-            
-            if (input === correctKey) {
-                document.getElementById('loginPage').style.display = 'none';
-                document.getElementById('pdfPage').style.display = 'block';
-                // Load PDF preview
-                document.getElementById('pdfViewer').src = 
-                    "https://drive.google.com/file/d/1LdV4hQF9rmKq3eC8uM-tLfwxO3Rx3k4t/preview";
-            } else {
-                alert('❌ Wrong key! Key: "vamsi jacks"');
-                document.getElementById('keyInput').value = '';
-                document.getElementById('keyInput').focus();
-            }
-        }
-        
-        function printPDF() {
-            window.open('https://drive.google.com/file/d/1LdV4hQF9rmKq3eC8uM-tLfwxO3Rx3k4t/preview');
-        }
-        
-        function toggleFullscreen() {
-            const viewer = document.getElementById('pdfViewer');
-            if (viewer.requestFullscreen) {
-                viewer.requestFullscreen();
-            } else if (viewer.webkitRequestFullscreen) {
-                viewer.webkitRequestFullscreen();
-            } else if (viewer.msRequestFullscreen) {
-                viewer.msRequestFullscreen();
-            }
-        }
-        
-        function goBack() {
-            document.getElementById('pdfPage').style.display = 'none';
-            document.getElementById('loginPage').style.display = 'flex';
-            document.getElementById('keyInput').value = '';
-            document.getElementById('keyInput').focus();
-        }
-        
-        // Enter key support
-        document.getElementById('keyInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') checkKey();
-        });
-        
-        // Auto-focus
-        window.onload = function() {
-            document.getElementById('keyInput').focus();
-        }
-    </script>
-</body>
-</html>
+    </
