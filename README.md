@@ -69,3 +69,8 @@
   </div>
 </body>
 </html>
+<div class="bottom-box">
+  <a href="https://drive.google.com/file/d/1nx35vkrfRGEWVINea4HfXZyXBRrxIWEE/view?usp=drivesdk" target="_blank" style="color: white; text-decoration: none;">
+    C language full notes
+  </a>
+</div>
