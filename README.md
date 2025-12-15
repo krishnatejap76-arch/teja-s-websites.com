@@ -85,7 +85,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>📚 My Study Notes</h1>
+    <h1>📚 My Self teja welcome to my website guys</h1>
     <p class="subtitle">JEE Mains | SSC GD | Programming Notes</p>
 
     <div class="section">
