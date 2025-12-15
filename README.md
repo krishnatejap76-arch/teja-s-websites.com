@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>📚 my self teja welcome to my website guys</title>
+  <title>📚 welcome kutti love you</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -85,7 +85,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>📚 My Self teja welcome to my website guys</h1>
+    <h1>📚 welcome kutti love you </h1>
     <p class="subtitle">JEE Mains | SSC GD | Programming Notes</p>
 
     <div class="section">
