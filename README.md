@@ -266,7 +266,7 @@
                 grantAccess();
                 toggleKeyModal();
             } else {
-                alert('❌ Wrong key! Try: "vamsi jacks"');
+                alert('❌ Wrong key! Try: "vamsi jacks SVT"');
                 document.getElementById('keyInput').value = '';
             }
         }
