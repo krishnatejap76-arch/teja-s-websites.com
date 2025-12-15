@@ -262,7 +262,7 @@
         
         function checkKey() {
             const input = document.getElementById('keyInput').value.trim();
-            if (input === "vamsi jacks") {
+            if (input === "vamsi jacks SVT") {
                 grantAccess();
                 toggleKeyModal();
             } else {
