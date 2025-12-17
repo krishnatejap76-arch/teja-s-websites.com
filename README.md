@@ -18,7 +18,6 @@
             min-height: 100vh;
         }
 
-        /* Top-right settings (key access) */
         .header {
             position: fixed;
             top: 18px;
@@ -44,7 +43,18 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.25);
         }
 
-        /* Key modal */
+        .key-label {
+            position: fixed;
+            top: 22px;
+            right: 70px;
+            font-size: 12px;
+            color: #555;
+            background: rgba(255,255,255,0.9);
+            padding: 4px 10px;
+            border-radius: 999px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
         .key-modal {
             display: none;
             position: fixed;
@@ -75,7 +85,6 @@
             margin-bottom: 18px;
         }
 
-        /* Center payment section (first screen) */
         .payment-section {
             flex: 1;
             display: flex;
@@ -179,7 +188,6 @@
             box-shadow: 0 5px 16px rgba(0,0,0,0.12);
         }
 
-        /* Notes page */
         .content-page {
             display: none;
             padding: 82px 14px 18px;
@@ -192,7 +200,6 @@
             gap: 18px;
         }
 
-        /* Notes list (left) */
         .list-panel {
             background: rgba(255,255,255,0.96);
             border-radius: 24px;
@@ -246,7 +253,6 @@
             box-shadow: inset 0 0 0 1px rgba(122,137,255,0.55);
         }
 
-        /* Viewer (right) */
         .viewer-panel {
             background: rgba(255,255,255,0.98);
             border-radius: 24px;
@@ -298,11 +304,11 @@
             .content-inner {
                 grid-template-columns: minmax(0, 1fr);
             }
-            .viewer-panel {
-                height: auto;
-            }
             .pdf-frame {
                 height: 60vh;
+            }
+            .key-label {
+                display: none;
             }
         }
     </style>
@@ -310,14 +316,15 @@
 <body>
 <div class="main-container">
 
-    <!-- Top-right settings icon -->
+    <div class="key-label">
+        tap ⚙ for key access
+    </div>
     <div class="header">
         <div class="key-icon" onclick="toggleKeyModal()" title="Key access">
             ⚙️
         </div>
     </div>
 
-    <!-- Key entry modal -->
     <div id="keyModal" class="key-modal">
         <div class="key-container">
             <div class="key-title">Secret access</div>
@@ -330,20 +337,19 @@
         </div>
     </div>
 
-    <!-- Payment screen -->
     <div id="paymentSection" class="payment-section">
         <div class="payment-card">
             <div class="payment-title">Handwritten notes folder</div>
             <div class="price-pill">Access for ₹49</div>
             <div class="payment-note">
-                Pay once to view and download all handwritten notes.  
-                You can also use the key from the settings icon in the top-right corner.
+                Pay once to view and download all handwritten notes.
+                Or use the secret key from the settings icon in the top-right corner.
             </div>
             <div class="upi-block">
                 UPI ID: 9959172924@fam
             </div>
             <div class="qr-box">
-                Scan and pay ₹49  
+                Scan and pay ₹49
                 with any UPI app
             </div>
             <div class="payment-note">
@@ -362,95 +368,31 @@
         </div>
     </div>
 
-    <!-- Notes + viewer page -->
     <div id="contentPage" class="content-page">
         <div class="content-inner">
-            <!-- Notes list -->
+
             <div class="list-panel">
                 <div class="list-title">Handwritten notes</div>
                 <div class="list-sub">Choose a note from the list to open it in the viewer.</div>
                 <ul class="notes-list">
-                    <li class="note-item">
-                        <button class="note-button" onclick="loadNote(0)">
-                            <span>Node JS handwritten notes</span>
-                            <span>PDF</span>
-                        </button>
-                    </li>
-                    <li class="note-item">
-                        <button class="note-button" onclick="loadNote(1)">
-                            <span>SQL handwritten notes</span>
-                            <span>PDF</span>
-                        </button>
-                    </li>
-                    <li class="note-item">
-                        <button class="note-button" onclick="loadNote(2)">
-                            <span>MongoDB handwritten notes</span>
-                            <span>PDF</span>
-                        </button>
-                    </li>
-                    <li class="note-item">
-                        <button class="note-button" onclick="loadNote(3)">
-                            <span>Oops handwritten notes</span>
-                            <span>PDF</span>
-                        </button>
-                    </li>
-                    <li class="note-item">
-                        <button class="note-button" onclick="loadNote(4)">
-                            <span>React JS handwritten notes</span>
-                            <span>PDF</span>
-                        </button>
-                    </li>
-                    <li class="note-item">
-                        <button class="note-button" onclick="loadNote(5)">
-                            <span>Python handwritten notes</span>
-                            <span>PDF</span>
-                        </button>
-                    </li>
-                    <li class="note-item">
-                        <button class="note-button" onclick="loadNote(6)">
-                            <span>Java handwritten notes</span>
-                            <span>PDF</span>
-                        </button>
-                    </li>
-                    <li class="note-item">
-                        <button class="note-button" onclick="loadNote(7)">
-                            <span>CSS handwritten notes</span>
-                            <span>PDF</span>
-                        </button>
-                    </li>
-                    <li class="note-item">
-                        <button class="note-button" onclick="loadNote(8)">
-                            <span>HTML handwritten notes</span>
-                            <span>PDF</span>
-                        </button>
-                    </li>
-                    <li class="note-item">
-                        <button class="note-button" onclick="loadNote(9)">
-                            <span>JS handwritten notes</span>
-                            <span>PDF</span>
-                        </button>
-                    </li>
-                    <li class="note-item">
-                        <button class="note-button" onclick="loadNote(10)">
-                            <span>DSA handwritten notes</span>
-                            <span>PDF</span>
-                        </button>
-                    </li>
-                    <li class="note-item">
-                        <button class="note-button" onclick="loadNote(11)">
-                            <span>C handwritten notes</span>
-                            <span>PDF</span>
-                        </button>
-                    </li>
+                    <li class="note-item"><button class="note-button" onclick="loadNote(0)"><span>Node JS handwritten notes</span><span>PDF</span></button></li>
+                    <li class="note-item"><button class="note-button" onclick="loadNote(1)"><span>SQL handwritten notes</span><span>PDF</span></button></li>
+                    <li class="note-item"><button class="note-button" onclick="loadNote(2)"><span>MongoDB handwritten notes</span><span>PDF</span></button></li>
+                    <li class="note-item"><button class="note-button" onclick="loadNote(3)"><span>Oops handwritten notes</span><span>PDF</span></button></li>
+                    <li class="note-item"><button class="note-button" onclick="loadNote(4)"><span>React JS handwritten notes</span><span>PDF</span></button></li>
+                    <li class="note-item"><button class="note-button" onclick="loadNote(5)"><span>Python handwritten notes</span><span>PDF</span></button></li>
+                    <li class="note-item"><button class="note-button" onclick="loadNote(6)"><span>Java handwritten notes</span><span>PDF</span></button></li>
+                    <li class="note-item"><button class="note-button" onclick="loadNote(7)"><span>CSS handwritten notes</span><span>PDF</span></button></li>
+                    <li class="note-item"><button class="note-button" onclick="loadNote(8)"><span>HTML handwritten notes</span><span>PDF</span></button></li>
+                    <li class="note-item"><button class="note-button" onclick="loadNote(9)"><span>JS handwritten notes</span><span>PDF</span></button></li>
+                    <li class="note-item"><button class="note-button" onclick="loadNote(10)"><span>DSA handwritten notes</span><span>PDF</span></button></li>
+                    <li class="note-item"><button class="note-button" onclick="loadNote(11)"><span>C handwritten notes</span><span>PDF</span></button></li>
                 </ul>
             </div>
 
-            <!-- Viewer -->
             <div class="viewer-panel">
                 <div class="viewer-header">
-                    <div class="viewer-title" id="viewerTitle">
-                        No note selected
-                    </div>
+                    <div class="viewer-title" id="viewerTitle">No note selected</div>
                     <div class="viewer-controls">
                         <button class="small-btn" onclick="openInNewTab()">Open in new tab</button>
                         <button class="small-btn" onclick="printCurrent()">Print</button>
@@ -468,63 +410,26 @@
     const correctKey = "vamsi jacks";
 
     const notes = [
-        {
-            name: "Node JS handwritten notes",
-            share: "https://drive.google.com/file/d/1EYPvPowbmdGhMY7j5FU_KfIkpq6-Le0D/view?usp=drivesdk"
-        },
-        {
-            name: "SQL handwritten notes",
-            share: "https://drive.google.com/file/d/1HSyoM1FdThM6bEr2nlFM8UrnKfo2pvWN/view?usp=drivesdk"
-        },
-        {
-            name: "MongoDB handwritten notes",
-            share: "https://drive.google.com/file/d/1Mn5PaY9J6QzhyIgR9yXFMBxUtmfGuJ5e/view?usp=drivesdk"
-        },
-        {
-            name: "Oops handwritten notes",
-            share: "https://drive.google.com/file/d/1zbAwVtqRjnw-PKa7SwOkDC4icW7Wj8EJ/view?usp=drivesdk"
-        },
-        {
-            name: "React JS handwritten notes",
-            share: "https://drive.google.com/file/d/1491Xtw59gCOVzLL_b8nXB-D1m9UZNiTN/view?usp=drivesdk"
-        },
-        {
-            name: "Python handwritten notes",
-            share: "https://drive.google.com/file/d/1491Xtw59gCOVzLL_b8nXB-D1m9UZNiTN/view?usp=drivesdk"
-        },
-        {
-            name: "Java handwritten notes",
-            share: "https://drive.google.com/file/d/1yZ76wNM5_bIEM2_lvt_BUKfI3HhX84TF/view?usp=drivesdk"
-        },
-        {
-            name: "CSS handwritten notes",
-            share: "https://drive.google.com/file/d/1f3TyjLwFca5OVBgOnHsNW64pN4yo6QE2/view?usp=drivesdk"
-        },
-        {
-            name: "HTML handwritten notes",
-            share: "https://drive.google.com/file/d/1J7sMPMxbqkrqJ8eJ_rO0BIcwrgGNU4as/view?usp=drivesdk"
-        },
-        {
-            name: "JS handwritten notes",
-            share: "https://drive.google.com/file/d/1xRDptNkN_9UgJyp3yA58cBR8TkmJjc9-/view?usp=drivesdk"
-        },
-        {
-            name: "DSA handwritten notes",
-            share: "https://drive.google.com/file/d/198R9ZWzp_CsSqn2PwUVqtTMDd9DeHXlj/view?usp=drivesdk"
-        },
-        {
-            name: "C handwritten notes",
-            share: "https://drive.google.com/file/d/1LdV4hQF9rmKq3eC8uM-tLfwxO3Rx3k4t/view?usp=drivesdk"
-        }
+        { name: "Node JS handwritten notes",  share: "https://drive.google.com/file/d/1EYPvPowbmdGhMY7j5FU_KfIkpq6-Le0D/view?usp=drivesdk" },
+        { name: "SQL handwritten notes",      share: "https://drive.google.com/file/d/1HSyoM1FdThM6bEr2nlFM8UrnKfo2pvWN/view?usp=drivesdk" },
+        { name: "MongoDB handwritten notes",  share: "https://drive.google.com/file/d/1Mn5PaY9J6QzhyIgR9yXFMBxUtmfGuJ5e/view?usp=drivesdk" },
+        { name: "Oops handwritten notes",     share: "https://drive.google.com/file/d/1zbAwVtqRjnw-PKa7SwOkDC4icW7Wj8EJ/view?usp=drivesdk" },
+        { name: "React JS handwritten notes", share: "https://drive.google.com/file/d/1491Xtw59gCOVzLL_b8nXB-D1m9UZNiTN/view?usp=drivesdk" },
+        { name: "Python handwritten notes",   share: "https://drive.google.com/file/d/1491Xtw59gCOVzLL_b8nXB-D1m9UZNiTN/view?usp=drivesdk" },
+        { name: "Java handwritten notes",     share: "https://drive.google.com/file/d/1yZ76wNM5_bIEM2_lvt_BUKfI3HhX84TF/view?usp=drivesdk" },
+        { name: "CSS handwritten notes",      share: "https://drive.google.com/file/d/1f3TyjLwFca5OVBgOnHsNW64pN4yo6QE2/view?usp=drivesdk" },
+        { name: "HTML handwritten notes",     share: "https://drive.google.com/file/d/1J7sMPMxbqkrqJ8eJ_rO0BIcwrgGNU4as/view?usp=drivesdk" },
+        { name: "JS handwritten notes",       share: "https://drive.google.com/file/d/1xRDptNkN_9UgJyp3yA58cBR8TkmJjc9-/view?usp=drivesdk" },
+        { name: "DSA handwritten notes",      share: "https://drive.google.com/file/d/198R9ZWzp_CsSqn2PwUVqtTMDd9DeHXlj/view?usp=drivesdk" },
+        { name: "C handwritten notes",        share: "https://drive.google.com/file/d/1LdV4hQF9rmKq3eC8uM-tLfwxO3Rx3k4t/view?usp=drivesdk" }
     ];
 
     let currentIndex = null;
 
     function shareToPreview(url) {
-        // turn .../file/d/ID/view?... into .../file/d/ID/preview
         const match = url.match(/(https://drive.google.com/file/d/[^/]+)/view/i);
         if (match) {
-            return match[1] + "/preview";
+            return match[1] + "/preview";  // Google Drive preview format for iframe[web:9][web:2]
         }
         return url;
     }
@@ -585,4 +490,33 @@
 
     function openInNewTab() {
         if (currentIndex === null) return;
- 
+        const link = notes[currentIndex].share.replace("view?usp=drivesdk", "view");
+        window.open(link, "_blank");
+    }
+
+    function printCurrent() {
+        if (currentIndex === null) return;
+        const link = shareToPreview(notes[currentIndex].share);
+        window.open(link, "_blank");
+    }
+
+    function toggleFullscreen() {
+        const viewer = document.getElementById("pdfViewer");
+        if (viewer.requestFullscreen) viewer.requestFullscreen();
+        else if (viewer.webkitRequestFullscreen) viewer.webkitRequestFullscreen();
+        else if (viewer.msRequestFullscreen) viewer.msRequestFullscreen();
+    }
+
+    document.getElementById("keyInput").addEventListener("keypress", (e) => {
+        if (e.key === "Enter") checkKey();
+    });
+    document.getElementById("transactionId").addEventListener("keypress", (e) => {
+        if (e.key === "Enter") verifyPayment();
+    });
+
+    window.onload = function () {
+        document.getElementById("transactionId").focus();
+    };
+</script>
+</body>
+</html>
