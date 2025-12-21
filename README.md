@@ -23,7 +23,8 @@
         .btn-wa:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(37,211,102,0.4); }
 
         /* Notes Grid */
-        .notes-wrapper { display: none; padding: 40px; background: #fff; }
+        .notes-wrapper { display: none; padding: 40px; background: #fff; animation: fadeIn 0.5s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .notes-header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #f0f0f0; }
         .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
         .note-card { background: #f9f9f9; border: 1px solid #eee; border-radius: 15px; padding: 20px; text-align: center; transition: 0.3s; }
@@ -40,12 +41,12 @@
 
 <div class="container">
     <div style="text-align: right; padding: 15px;">
-        <button onclick="openModal()" style="cursor:pointer; padding: 10px 20px; border-radius: 50px; border: none; background: #333; color: #fff; font-weight: bold; transition: 0.3s;">Unlock with Code 🔑</button>
+        <button onclick="openModal()" style="cursor:pointer; padding: 10px 20px; border-radius: 50px; border: none; background: #333; color: #fff; font-weight: bold;">Unlock with Code 🔑</button>
     </div>
 
     <header class="header">
         <h1>Premium Programmer Notes</h1>
-        <p>Master Coding with 12 Handwritten PDF Resources</p>
+        <p>12 Premium Handwritten PDF Resources</p>
     </header>
 
     <section class="payment-section" id="paymentView">
@@ -59,14 +60,13 @@
             <input type="text" id="uName" placeholder="Your Full Name">
             <input type="text" id="uTxn" placeholder="Transaction ID (Last 5 digits)">
             <button class="btn-wa" onclick="requestAccess()">I Have Paid - Open WhatsApp</button>
-            <p style="font-size: 0.75rem; color: #888; margin-top: 15px; text-align: center;">Verification usually takes 5-10 minutes.</p>
         </div>
     </section>
 
     <section class="notes-wrapper" id="unlockedView">
         <div class="notes-header">
             <h2 style="color: #667eea;">📚 Your Unlocked Library</h2>
-            <p>Click "View PDF" to open the notes in Google Drive</p>
+            <p>Access your 12 Premium Handwritten Notes</p>
         </div>
         
         <div class="grid-container" id="notesGrid">
@@ -77,16 +77,16 @@
 <div class="modal" id="unlockModal">
     <div class="modal-content">
         <h3 style="margin-bottom: 10px;">Enter Access Code</h3>
-        <p style="font-size: 0.85rem; color: #666; margin-bottom: 20px;">Paste the secret code you received on WhatsApp.</p>
+        <p style="font-size: 0.85rem; color: #666; margin-bottom: 20px;">Paste the secret code you received from Krishnateja.</p>
         <input type="text" id="txnRef" placeholder="Confirm Txn ID (Last 5 digits)">
-        <input type="text" id="otpInput" placeholder="Enter Secret Key (e.g. 12345GHT)">
+        <input type="text" id="otpInput" placeholder="Enter Secret Code (e.g. 54321vamsi jacks)">
         <button class="btn-wa" style="background: #667eea; margin-top: 15px;" onclick="verifyCode()">Verify & Access</button>
-        <button onclick="closeModal()" style="margin-top: 15px; border:none; background:none; color:gray; cursor:pointer; font-size: 0.9rem;">Go Back</button>
+        <button onclick="closeModal()" style="margin-top: 15px; border:none; background:none; color:gray; cursor:pointer;">Close</button>
     </div>
 </div>
 
 <script>
-    // THE 12 NOTES DATA
+    // 12 NOTES DATA WITH YOUR LINKS
     const notesData = [
         { title: "Node.js Notes", link: "https://drive.google.com/file/d/1EYPvPowbmdGhMY7j5FU_KfIkpq6-Le0D/view?usp=drivesdk" },
         { title: "SQL Notes", link: "https://drive.google.com/file/d/1HSyoM1FdThM6bEr2nlFM8UrnKfo2pvWN/view?usp=drivesdk" },
@@ -102,27 +102,27 @@
         { title: "C Language Notes", link: "https://drive.google.com/file/d/1LdV4hQF9rmKq3eC8uM-tLfwxO3Rx3k4t/view?usp=drivesdk" }
     ];
 
-    // Load Grid
+    // Load Grid Items
     const grid = document.getElementById('notesGrid');
     notesData.forEach(note => {
         grid.innerHTML += `
             <div class="note-card">
-                <span class="pdf-icon">📕</span>
-                <h4 style="font-size: 1rem; color: #444;">${note.title}</h4>
+                <span class="pdf-icon">📒</span>
+                <h4 style="font-size: 0.95rem;">${note.title}</h4>
                 <a href="${note.link}" target="_blank" class="view-btn">View PDF</a>
             </div>
         `;
     });
 
-    // Verification Logic
-    const SECRET_SALT = "GHT"; 
+    // BUSINESS LOGIC
+    const SECRET_TEXT = "vamsi jacks"; // Your custom string
 
     function requestAccess() {
         const name = document.getElementById('uName').value.trim();
         const txn = document.getElementById('uTxn').value.trim();
-        if(!name || txn.length < 5) { alert("Please enter your name and last 5 digits of Transaction ID"); return; }
+        if(!name || txn.length < 5) { alert("Please enter Name and last 5 digits of Txn ID"); return; }
 
-        const msg = `*PAYMENT VERIFICATION*%0A--------------------------%0A*Name:* ${name}%0A*Txn ID:* ${txn}%0A*Amount:* ₹29%0A--------------------------%0AI have paid. Please send my secret access code.`;
+        const msg = `*PAYMENT VERIFICATION*%0AName: ${name}%0ATxn ID: ${txn}%0A_I have paid ₹29. Please verify and send the unlock code._`;
         window.open(`https://wa.me/919959172924?text=${msg}`, '_blank');
     }
 
@@ -130,19 +130,21 @@
     function closeModal() { document.getElementById('unlockModal').style.display = 'none'; }
 
     function verifyCode() {
-        const ref = document.getElementById('txnRef').value.trim();
-        const inputCode = document.getElementById('otpInput').value.trim();
-        
-        // Logical check: The code is valid if it is the Txn ID + GHT
-        const validCombination = ref + SECRET_SALT;
+        const userTxnInput = document.getElementById('txnRef').value.trim();
+        const userSecretInput = document.getElementById('otpInput').value.trim();
 
-        if(inputCode === validCombination && ref !== "") {
+        // LOGIC: Reverse the Txn ID + add "vamsi jacks"
+        // Example: "98668" becomes "86689" + "vamsi jacks"
+        const reversedTxn = userTxnInput.split('').reverse().join('');
+        const expectedCode = reversedTxn + SECRET_TEXT;
+
+        if(userSecretInput === expectedCode && userTxnInput !== "") {
             document.getElementById('paymentView').style.display = 'none';
             document.getElementById('unlockedView').style.display = 'block';
             closeModal();
-            alert("Success! Your 12 Premium Notes are now unlocked.");
+            alert("Verification Successful! Enjoy your notes.");
         } else {
-            alert("Invalid Code! Please check your Transaction ID or wait for the correct key on WhatsApp.");
+            alert("Invalid Code! Make sure you entered the ID and the Secret Code exactly as instructed.");
         }
     }
 </script>
