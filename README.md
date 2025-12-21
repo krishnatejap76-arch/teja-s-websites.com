@@ -79,7 +79,7 @@
         <h3 style="margin-bottom: 10px;">Enter Access Code</h3>
         <p style="font-size: 0.85rem; color: #666; margin-bottom: 20px;">Paste the secret code you received from Krishnateja.</p>
         <input type="text" id="txnRef" placeholder="Confirm Txn ID (Last 5 digits)">
-        <input type="text" id="otpInput" placeholder="Enter Secret Code (e.g. 54321vamsi jacks)">
+        <input type="text" id="otpInput" placeholder="Enter Secret Code ()">
         <button class="btn-wa" style="background: #667eea; margin-top: 15px;" onclick="verifyCode()">Verify & Access</button>
         <button onclick="closeModal()" style="margin-top: 15px; border:none; background:none; color:gray; cursor:pointer;">Close</button>
     </div>
@@ -115,7 +115,7 @@
     });
 
     // BUSINESS LOGIC
-    const SECRET_TEXT = "vamsi jacks"; // Your custom string
+    const SECRET_TEXT = " vamsi jacks SVT"; // Your custom string
 
     function requestAccess() {
         const name = document.getElementById('uName').value.trim();
