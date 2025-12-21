@@ -79,7 +79,7 @@
         <h3 style="margin-bottom: 10px;">Enter Access Code</h3>
         <p style="font-size: 0.85rem; color: #666; margin-bottom: 20px;">Paste the secret code you received from Krishnateja.</p>
         <input type="text" id="txnRef" placeholder="Confirm Txn ID (Last 5 digits)">
-        <input type="text" id="otpInput" placeholder="Enter Secret Code ()">
+        <input type="text" id="otpInput" placeholder="Enter Secret Code the admin sent you">
         <button class="btn-wa" style="background: #667eea; margin-top: 15px;" onclick="verifyCode()">Verify & Access</button>
         <button onclick="closeModal()" style="margin-top: 15px; border:none; background:none; color:gray; cursor:pointer;">Close</button>
     </div>
